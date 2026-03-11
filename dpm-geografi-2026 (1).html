@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DPM GEOGRAFI 2026 · Data Anggota</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --merah:#C0021A;--merah2:#E8001F;--merah3:#FF1A35;
+  --putih:#F8F4E8;--emas:#D4A017;--emas2:#F0C040;--emas3:#FFD966;
+  --navy:#0A0F2E;--card:#0E1238;--border:#1E2660;--border2:#2A3480;
+  --dim:#4A5280;--txt:#D8DCF8;--txt2:#A8B0D8;
+  --green:#10B981;--green2:#34D399;
+}
+html,body{font-family:'Exo 2',sans-serif;background:var(--navy);min-height:100vh;overflow-x:hidden;color:var(--txt);}
+
+/* ── BG ── */
+.bg-sky{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(192,2,26,.18) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 20%,rgba(212,160,23,.08) 0%,transparent 50%),linear-gradient(180deg,#04071A 0%,#080D28 30%,#0A0F32 60%,#080C25 100%);overflow:hidden;}
+.star-field{position:absolute;inset:0;}
+.st{position:absolute;border-radius:50%;background:#fff;animation:stTwinkle ease-in-out infinite;}
+@keyframes stTwinkle{0%,100%{opacity:.1;transform:scale(1);}50%{opacity:.8;transform:scale(1.5);}}
+.flag-wave{position:fixed;top:0;left:0;width:100%;z-index:1;pointer-events:none;display:flex;flex-direction:column;opacity:.06;}
+.flag-merah{height:28px;background:linear-gradient(90deg,var(--merah),var(--merah2),var(--merah));animation:flagWave 3s ease-in-out infinite;}
+.flag-putih{height:28px;background:linear-gradient(90deg,#E8E4D8,#FDF9F0,#E8E4D8);animation:flagWave 3s ease-in-out infinite;animation-delay:.15s;}
+@keyframes flagWave{0%,100%{transform:skewX(0);}25%{transform:skewX(1deg);}75%{transform:skewX(-1deg);}}
+.confetti-bg{position:fixed;z-index:2;pointer-events:none;animation:confBg linear infinite;opacity:.35;}
+@keyframes confBg{0%{transform:translateY(-20px) rotate(0deg);}100%{transform:translateY(110vh) rotate(720deg);}}
+.dove{position:fixed;z-index:3;pointer-events:none;font-size:1.4rem;animation:doveFly linear infinite;}
+@keyframes doveFly{0%{transform:translate(-80px,0);}49%{transform:translate(calc(100vw + 80px),-30px);}50%{transform:translate(calc(100vw + 80px),-30px) scaleX(-1);}99%{transform:translate(-80px,0) scaleX(-1);}100%{transform:translate(-80px,0);}}
+.garuda{position:fixed;z-index:4;pointer-events:none;font-size:5rem;animation:garudaSoar 20s ease-in-out infinite;opacity:.18;}
+@keyframes garudaSoar{0%{top:8vh;left:-10%;}40%{top:5vh;left:50%;}80%{top:7vh;left:110%;}81%{left:110%;transform:scaleX(-1);}99%{top:8vh;left:-10%;transform:scaleX(-1);}100%{top:8vh;left:-10%;}}
+.pillar-left,.pillar-right{position:fixed;top:0;width:22px;height:100%;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(212,160,23,.25) 0%,rgba(192,2,26,.1) 30%,rgba(212,160,23,.15) 60%,rgba(192,2,26,.08) 100%);}
+.pillar-left{left:0;border-right:1px solid rgba(212,160,23,.2);}
+.pillar-right{right:0;border-left:1px solid rgba(212,160,23,.2);}
+.podium-beam{position:fixed;bottom:0;left:0;width:100%;height:5px;z-index:5;background:linear-gradient(90deg,var(--merah),var(--emas),var(--merah2),var(--emas2),var(--merah));background-size:200% 100%;animation:beamFlow 3s linear infinite;}
+@keyframes beamFlow{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+.vote-bubble{position:fixed;bottom:-60px;z-index:2;pointer-events:none;font-family:'Cinzel',serif;font-weight:700;font-size:.65rem;letter-spacing:1px;background:rgba(192,2,26,.15);border:1px solid rgba(192,2,26,.3);border-radius:4px;padding:3px 8px;color:rgba(248,244,232,.4);animation:bubbleRise linear infinite;}
+@keyframes bubbleRise{0%{transform:translateY(0);opacity:0;}10%{opacity:.6;}90%{opacity:.3;}100%{transform:translateY(-110vh);opacity:0;}}
+.doc-float{position:fixed;z-index:2;pointer-events:none;font-size:1.8rem;opacity:.08;animation:docFloat ease-in-out infinite;}
+@keyframes docFloat{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-25px) rotate(5deg);}}
+.scanlines{position:fixed;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,10,.04) 3px,rgba(0,0,10,.04) 4px);}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:10;max-width:520px;margin:0 auto;padding:14px 13px 60px;}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes accentShimmer{0%,100%{opacity:.6;}50%{opacity:1;}}
+
+/* ── HEADER ── */
+.header{position:relative;margin-bottom:16px;background:linear-gradient(145deg,#0C1035 0%,#141848 45%,#0A0E2A 100%);border-radius:6px;overflow:hidden;border:1px solid var(--border2);border-top:4px solid var(--merah2);box-shadow:0 0 60px rgba(192,2,26,.15),0 20px 50px rgba(0,0,0,.7);padding:22px 18px 18px;text-align:center;animation:cardIn .9s cubic-bezier(.16,1,.3,1);}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(212,160,23,.022) 20px,rgba(212,160,23,.022) 21px);pointer-events:none;}
+.header::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--emas),var(--merah),var(--emas),transparent);animation:accentShimmer 3s ease-in-out infinite;}
+.hdr-logo-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px;}
+.hdr-emblem{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--merah),var(--merah2));border:3px solid var(--emas);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:emblemPulse 3s ease-in-out infinite;flex-shrink:0;}
+@keyframes emblemPulse{0%,100%{box-shadow:0 0 20px rgba(212,160,23,.4);}50%{box-shadow:0 0 35px rgba(212,160,23,.7),0 0 60px rgba(192,2,26,.5);}}
+.hdr-org-info{text-align:left;}
+.hdr-dpm{font-family:'Cinzel',serif;font-weight:900;font-size:1.5rem;letter-spacing:3px;color:var(--emas2);text-shadow:0 0 20px rgba(212,160,23,.6);line-height:1;}
+.hdr-geo{font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;color:var(--merah3);letter-spacing:3px;margin-top:3px;}
+.hdr-divider{width:60%;height:1px;margin:10px auto;background:linear-gradient(90deg,transparent,var(--emas),var(--merah),var(--emas),transparent);opacity:.5;}
+.hdr-title{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;letter-spacing:2.5px;color:var(--putih);}
+.hdr-sub{font-size:.72rem;font-weight:500;color:var(--txt2);letter-spacing:2px;margin-top:3px;}
+.hdr-stamp{display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',monospace;font-size:.58rem;font-weight:700;color:var(--emas);background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.2);padding:3px 12px;border-radius:2px;margin-top:9px;letter-spacing:1.5px;}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--green2);animation:ldPulse 1.3s ease-in-out infinite;box-shadow:0 0 5px var(--green2);}
+@keyframes ldPulse{0%,100%{opacity:1;}50%{opacity:.1;}}
+
+/* ── SIDANG COUNTER (replaces progress bar) ── */
+.sidang-counter{
+  margin-bottom:14px;border-radius:6px;overflow:hidden;
+  border:1px solid rgba(212,160,23,.2);
+  animation:cardIn .5s ease;
+}
+.sc-header{
+  background:rgba(0,0,0,.5);
+  padding:7px 14px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  border-bottom:1px solid rgba(212,160,23,.12);
+}
+.sc-header-txt{font-family:'Orbitron',monospace;font-size:.58rem;font-weight:700;color:var(--emas);letter-spacing:2.5px;}
+.sc-body{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:linear-gradient(135deg,rgba(192,2,26,.08),rgba(10,15,46,.9),rgba(212,160,23,.04));
+}
+.sc-item{
+  padding:13px 8px;text-align:center;position:relative;
+}
+.sc-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:linear-gradient(180deg,transparent,rgba(212,160,23,.2),transparent);}
+.sc-icon{font-size:1.35rem;display:block;margin-bottom:4px;}
+.sc-val{font-family:'Orbitron',monospace;font-weight:900;font-size:1.4rem;color:var(--emas2);line-height:1;transition:color .3s;}
+.sc-lbl{font-family:'Orbitron',monospace;font-size:.47rem;font-weight:700;color:var(--dim);letter-spacing:1.5px;margin-top:3px;text-transform:uppercase;}
+
+/* ── CARD ── */
+.card{background:linear-gradient(155deg,#0D1138 0%,#121640 60%,#0B0F30 100%);border-radius:6px;padding:18px 16px;margin-bottom:13px;border:1px solid var(--border);border-left:3px solid var(--merah2);box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(212,160,23,.06);position:relative;overflow:hidden;animation:cardIn .5s cubic-bezier(.16,1,.3,1) both;}
+.card:nth-child(1){animation-delay:.05s;}.card:nth-child(2){animation-delay:.12s;}.card:nth-child(3){animation-delay:.19s;}.card:nth-child(4){animation-delay:.26s;}
+.card::before{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,var(--merah),rgba(212,160,23,.4),transparent);}
+.card::after{content:'';position:absolute;top:-40px;right:-40px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(192,2,26,.05),transparent 70%);pointer-events:none;}
+.card-title{font-family:'Cinzel',serif;font-weight:700;font-size:.9rem;letter-spacing:2.5px;color:var(--emas2);padding-bottom:10px;margin-bottom:14px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--border);}
+.ct-num{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--merah),var(--merah2));display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:.65rem;font-weight:900;color:#fff;flex-shrink:0;}
+.ct-bar{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+
+/* ── FORM ── */
+.fg{margin-bottom:14px;}.fg:last-child{margin-bottom:0;}
+.lbl{display:block;font-weight:700;font-size:.7rem;color:var(--txt2);margin-bottom:6px;letter-spacing:2.5px;text-transform:uppercase;font-family:'Orbitron',monospace;}
+.req{color:var(--merah3);margin-left:2px;}
+.fg input,.fg select{width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:4px;font-family:'Exo 2',sans-serif;font-size:.95rem;font-weight:600;color:var(--txt);background:rgba(4,6,20,.8);outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s,box-shadow .2s;}
+.fg input:focus,.fg select:focus{border-color:var(--merah2);background:rgba(192,2,26,.06);box-shadow:0 0 0 2px rgba(192,2,26,.15);}
+.fg input::placeholder{color:#252B50;font-style:italic;font-size:.88rem;}
+.fg select option{background:#0D1035;color:var(--txt);}
+.sel-w{position:relative;}.sel-w::after{content:'▼';position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:.58rem;color:var(--emas);pointer-events:none;}
+.date-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.date-grid .sel-w select{text-align:center;font-weight:700;padding-right:28px;}
+
+/* ── ANGKATAN ── */
+.angkatan-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ag-opt input{display:none;}
+.ag-opt label{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 4px;border:1px solid var(--border);border-radius:4px;cursor:pointer;color:var(--dim);background:rgba(4,6,20,.7);transition:all .18s;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;overflow:hidden;}
+.ag-opt label .ay{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--dim);transition:color .18s;line-height:1;}
+.ag-opt label .at{font-size:.52rem;font-weight:700;letter-spacing:1.5px;color:#252B50;transition:color .18s;margin-top:2px;text-transform:uppercase;font-family:'Orbitron',monospace;}
+.ag-opt input:checked+label{border-color:var(--merah2);background:rgba(192,2,26,.12);box-shadow:0 0 16px rgba(192,2,26,.25);}
+.ag-opt input:checked+label::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--merah2),transparent);}
+.ag-opt input:checked+label .ay{color:var(--putih);}
+.ag-opt input:checked+label .at{color:var(--merah3);}
+
+/* ── MBG ── */
+.mbg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mbg-opt input{display:none;}
+.mbg-opt label{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--border);border-radius:4px;cursor:pointer;font-weight:600;font-size:.82rem;color:var(--txt2);background:rgba(4,6,20,.7);transition:all .18s;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;overflow:hidden;}
+.mbg-opt label .mi{font-size:1.6rem;flex-shrink:0;transition:transform .2s;}
+.mbg-opt label .mn{font-size:.78rem;font-weight:700;line-height:1.3;}
+.mbg-opt label .md{font-size:.65rem;color:var(--dim);font-weight:500;margin-top:1px;}
+.mbg-opt input:checked+label{border-color:var(--emas);background:rgba(212,160,23,.1);color:var(--emas3);box-shadow:0 0 16px rgba(212,160,23,.2);}
+.mbg-opt input:checked+label::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--emas2),transparent);}
+.mbg-opt input:checked+label .mi{transform:scale(1.2);}
+
+/* ── SUBMIT ── */
+.btn-stamp{width:100%;padding:17px;background:linear-gradient(135deg,var(--merah) 0%,var(--merah2) 50%,var(--merah3) 100%);border:none;border-radius:5px;font-family:'Cinzel',serif;font-size:1.15rem;font-weight:700;letter-spacing:3px;color:var(--putih);cursor:pointer;box-shadow:0 6px 30px rgba(192,2,26,.35);transition:all .14s;display:flex;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.btn-stamp::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-15deg);animation:stampSheen 3.5s ease-in-out infinite;}
+@keyframes stampSheen{0%{left:-100%;}16%,100%{left:140%;}}
+.btn-stamp:active{transform:scale(.98);}
+.btn-stamp:disabled{opacity:.5;cursor:not-allowed;}
+.msg{display:none;padding:13px 16px;border-radius:4px;font-weight:700;font-size:.87rem;text-align:center;margin-top:12px;border-left:3px solid;animation:msgIn .3s ease;line-height:1.6;}
+@keyframes msgIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:translateX(0);}}
+.msg.loading{display:block;background:rgba(212,160,23,.06);border-color:var(--emas);color:var(--emas2);}
+.msg.error{display:block;background:rgba(192,2,26,.08);border-color:var(--merah2);color:#FF8A8A;}
+.footer-strip{text-align:center;padding:12px;margin-top:12px;font-family:'Orbitron',monospace;font-size:.55rem;letter-spacing:2px;color:var(--dim);}
+
+/* ══════════════════════════════════════════
+   🎉 CELEBRATION OVERLAY — FULL EPIC PARTY
+══════════════════════════════════════════ */
+.cel-overlay{position:fixed;inset:0;z-index:500;display:none;overflow:hidden;}
+.cel-overlay.show{display:block;}
+
+/* BG radial burst */
+.cel-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 30%,rgba(192,2,26,.55) 0%,rgba(212,160,23,.28) 30%,rgba(10,15,46,.97) 65%);animation:celBgIn .5s ease forwards;}
+@keyframes celBgIn{from{opacity:0;}to{opacity:1;}}
+
+/* Confetti bits */
+.cbit{position:absolute;top:-24px;pointer-events:none;border-radius:3px;animation:cbitFall linear forwards;}
+@keyframes cbitFall{0%{transform:translateY(0) rotate(0) scaleX(1);opacity:1;}90%{opacity:.7;}100%{transform:translateY(105vh) rotate(900deg) scaleX(.3);opacity:0;}}
+
+/* Big floating background emojis */
+.cel-bg-emoji{position:absolute;pointer-events:none;font-size:3.5rem;opacity:.1;animation:celBgEmoji ease-in-out infinite alternate;}
+@keyframes celBgEmoji{from{transform:translateY(0) rotate(-8deg) scale(1);}to{transform:translateY(-28px) rotate(8deg) scale(1.08);}}
+
+/* Scrollable container */
+.cel-scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:flex;align-items:flex-start;justify-content:center;padding:18px 14px 50px;}
+
+/* Main card */
+.cel-card{position:relative;z-index:10;width:100%;max-width:400px;border-radius:16px;overflow:hidden;border:2px solid var(--emas);box-shadow:0 0 0 4px rgba(212,160,23,.18),0 0 100px rgba(192,2,26,.6),0 0 180px rgba(212,160,23,.3),0 60px 100px rgba(0,0,0,.95);animation:celCardPop .7s cubic-bezier(.34,1.56,.64,1);margin-top:8px;}
+@keyframes celCardPop{0%{transform:scale(.25) rotate(-18deg) translateY(80px);opacity:0;}55%{transform:scale(1.06) rotate(2deg) translateY(-5px);}100%{transform:scale(1) rotate(0) translateY(0);opacity:1;}}
+
+/* ─ Red banner top ─ */
+.cel-top{background:linear-gradient(135deg,#7A0010 0%,var(--merah2) 50%,#950015 100%);padding:20px 18px 18px;text-align:center;position:relative;overflow:hidden;}
+.cel-top::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 12px,rgba(255,255,255,.035) 12px,rgba(255,255,255,.035) 13px);}
+.cel-top::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,transparent,var(--emas3),var(--emas),var(--emas3),transparent);}
+.cel-stamp-spin{position:absolute;top:10px;right:10px;width:46px;height:46px;border-radius:50%;border:2px dashed rgba(255,215,0,.35);display:flex;align-items:center;justify-content:center;font-size:1.2rem;opacity:.5;animation:celStampSpin 5s linear infinite;}
+@keyframes celStampSpin{to{transform:rotate(360deg);}}
+.cel-hero-emoji{font-size:4.2rem;display:block;animation:celHeroBounce .4s ease-in-out infinite alternate;filter:drop-shadow(0 0 28px rgba(255,220,0,.9));position:relative;z-index:1;margin-bottom:6px;}
+@keyframes celHeroBounce{from{transform:scale(1) rotate(-6deg);}to{transform:scale(1.18) rotate(6deg);}}
+.cel-tag{display:inline-block;font-family:'Orbitron',monospace;font-size:.56rem;font-weight:700;color:var(--emas);letter-spacing:3px;background:rgba(0,0,0,.45);border:1px solid rgba(212,160,23,.4);padding:3px 12px;border-radius:2px;margin-bottom:8px;position:relative;z-index:1;}
+.cel-main-title{font-family:'Cinzel',serif;font-weight:900;font-size:1.7rem;letter-spacing:4px;color:#FFE566;text-shadow:0 0 35px rgba(255,200,0,.95),0 3px 0 rgba(0,0,0,.7);line-height:1.1;position:relative;z-index:1;}
+.cel-main-sub{font-family:'Orbitron',monospace;font-size:.6rem;font-weight:700;color:rgba(255,220,100,.6);letter-spacing:2.5px;margin-top:5px;position:relative;z-index:1;}
+
+/* ─ Party emojis row ─ */
+.cel-party-row{display:flex;justify-content:center;gap:9px;padding:14px 0 0;background:linear-gradient(155deg,#0D1138,#1A1050,#0A0E2A);}
+.cpe{font-size:1.7rem;animation:cpeBounce ease-in-out infinite alternate;}
+.cpe:nth-child(1){animation-duration:.5s;animation-delay:0s;}
+.cpe:nth-child(2){animation-duration:.45s;animation-delay:.08s;}
+.cpe:nth-child(3){animation-duration:.55s;animation-delay:.04s;}
+.cpe:nth-child(4){animation-duration:.48s;animation-delay:.12s;}
+.cpe:nth-child(5){animation-duration:.42s;animation-delay:.06s;}
+.cpe:nth-child(6){animation-duration:.52s;animation-delay:.1s;}
+@keyframes cpeBounce{from{transform:translateY(0) scale(1);}to{transform:translateY(-11px) scale(1.22);}}
+
+/* ─ Body ─ */
+.cel-body{background:linear-gradient(155deg,#0D1138,#1A1050,#0A0E2A);padding:14px 18px 18px;}
+
+/* Name block */
+.cel-name-block{text-align:center;margin-bottom:14px;padding:14px 12px;background:rgba(0,0,0,.45);border-radius:10px;border:1px solid rgba(212,160,23,.22);position:relative;overflow:hidden;}
+.cel-name-block::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--emas),transparent);}
+.cel-name-block::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.3),transparent);}
+.cel-welcome{font-family:'Orbitron',monospace;font-size:.52rem;font-weight:700;color:var(--dim);letter-spacing:3px;margin-bottom:6px;}
+.cel-nama{font-family:'Cinzel',serif;font-weight:900;font-size:1.5rem;letter-spacing:2px;color:var(--putih);text-shadow:0 0 22px rgba(255,255,255,.25);line-height:1.2;}
+.cel-nim-txt{font-family:'Orbitron',monospace;font-size:.58rem;color:var(--dim);letter-spacing:2px;margin-top:5px;}
+
+/* Data grid */
+.cel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.cel-di{background:rgba(0,0,0,.38);border:1px solid var(--border);border-radius:8px;padding:11px 8px;text-align:center;position:relative;overflow:hidden;}
+.cel-di::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--emas),transparent);}
+.cel-di-ico{font-size:1.55rem;display:block;margin-bottom:4px;}
+.cel-di-lbl{font-family:'Orbitron',monospace;font-size:.48rem;font-weight:700;color:var(--dim);letter-spacing:1.5px;}
+.cel-di-val{font-family:'Exo 2',sans-serif;font-weight:800;font-size:.78rem;color:var(--emas2);margin-top:2px;line-height:1.3;}
+.cel-di.full{grid-column:1/-1;}
+
+/* Angkatan badge */
+.cel-ang-row{text-align:center;margin-bottom:13px;}
+.ang-badge{display:inline-flex;align-items:center;gap:9px;padding:11px 24px;border-radius:30px;font-family:'Cinzel',serif;font-weight:700;font-size:.95rem;letter-spacing:2px;animation:badgePop .5s cubic-bezier(.34,1.56,.64,1) .2s both;}
+@keyframes badgePop{from{transform:scale(0) rotate(-5deg);}to{transform:scale(1) rotate(0);}}
+.ang-badge.senior{background:rgba(34,197,94,.15);border:2px solid var(--green);color:var(--green2);box-shadow:0 0 28px rgba(34,197,94,.35);}
+.ang-badge.minion{background:rgba(139,92,246,.15);border:2px solid #8B5CF6;color:#D8B4FE;box-shadow:0 0 28px rgba(139,92,246,.35);}
+
+/* Fun quote */
+.cel-quote{background:linear-gradient(135deg,rgba(212,160,23,.08),rgba(192,2,26,.04));border:1px solid rgba(212,160,23,.22);border-radius:8px;padding:13px 14px 12px;margin-bottom:14px;text-align:center;position:relative;}
+.cel-quote::before{content:'"';position:absolute;top:-10px;left:12px;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,160,23,.22);line-height:1;}
+.cel-q-emoji{font-size:1.4rem;display:block;margin-bottom:5px;}
+.cel-q-text{font-family:'Exo 2',sans-serif;font-size:.84rem;font-weight:600;color:var(--emas2);line-height:1.65;font-style:italic;}
+.cel-q-src{font-family:'Orbitron',monospace;font-size:.5rem;color:var(--dim);letter-spacing:1.5px;margin-top:6px;}
+
+/* Close button */
+.btn-cel-close{width:100%;padding:15px;background:linear-gradient(135deg,var(--merah) 0%,var(--merah2) 60%,#A0001A 100%);border:1px solid rgba(255,255,255,.15);border-radius:8px;font-family:'Cinzel',serif;font-size:1rem;font-weight:700;letter-spacing:2.5px;color:var(--putih);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.btn-cel-close::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:celBtnSheen 2.5s ease-in-out infinite;}
+@keyframes celBtnSheen{0%{left:-80%;}15%,100%{left:130%;}}
+.btn-cel-close:active{transform:scale(.98);}
+</style>
+</head>
+<body>
+
+<!-- BG SCENE -->
+<div class="bg-sky" id="bgSky"><div class="star-field" id="starField"></div></div>
+<div class="flag-wave"><div class="flag-merah"></div><div class="flag-putih"></div></div>
+<div class="garuda">🦅</div>
+<div class="pillar-left"></div><div class="pillar-right"></div>
+<div class="podium-beam"></div>
+<div class="scanlines"></div>
+<div id="floaters"></div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starField');
+  for(let i=0;i<140;i++){
+    const s=document.createElement('div');s.className='st';
+    const sz=.6+Math.random()*1.8;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${1.5+Math.random()*3}s;animation-delay:${Math.random()*4}s;`;
+    sf.appendChild(s);
+  }
+  const fl=document.getElementById('floaters');
+  const cc=['#C0021A','#D4A017','#F8F4E8','#E8001F','#F0C040'];
+  for(let i=0;i<20;i++){
+    const c=document.createElement('div');c.className='confetti-bg';
+    const sz=4+Math.random()*8;
+    c.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;background:${cc[Math.floor(Math.random()*cc.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${5+Math.random()*8}s;animation-delay:${Math.random()*6}s;`;
+    fl.appendChild(c);
+  }
+  ['🕊️','🕊️','🕊️'].forEach((_,i)=>{
+    const el=document.createElement('div');el.className='dove';el.textContent='🕊️';
+    el.style.cssText=`top:${10+Math.random()*40}%;animation-duration:${14+Math.random()*12}s;animation-delay:${Math.random()*14}s;font-size:${1+Math.random()*.8}rem;`;
+    fl.appendChild(el);
+  });
+  ['SETUJU','HADIR','VOTING','SIDANG','RAPAT','KUORUM','AGENDA','USULAN'].forEach((m,i)=>{
+    const b=document.createElement('div');b.className='vote-bubble';b.textContent=m;
+    b.style.cssText=`left:${5+Math.random()*90}%;animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*10}s;`;
+    fl.appendChild(b);
+  });
+  ['📜','📋','📄','🗂️','📑'].forEach((d,i)=>{
+    const el=document.createElement('div');el.className='doc-float';el.textContent=d;
+    el.style.cssText=`left:${5+i*20}%;top:${20+Math.random()*50}%;animation-duration:${3+Math.random()*3}s;animation-delay:${Math.random()*3}s;`;
+    fl.appendChild(el);
+  });
+})();
+(function(){
+  const D=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const M=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const n=new Date();
+  document.getElementById('tgl-now').textContent=D[n.getDay()]+', '+n.getDate()+' '+M[n.getMonth()]+' '+n.getFullYear();
+})();
+</script>
+
+<!-- MAIN APP -->
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hdr-logo-row">
+      <div class="hdr-emblem">⚖️</div>
+      <div class="hdr-org-info">
+        <div class="hdr-dpm">DPM GEOGRAFI</div>
+        <div class="hdr-geo">PERIODE 2026</div>
+      </div>
+    </div>
+    <div class="hdr-divider"></div>
+    <div class="hdr-title">PENDATAAN ANGGOTA LEGISLATIF</div>
+    <div class="hdr-sub">Tanggal Lahir · Biodata · Menu Favorit MBG</div>
+    <div class="hdr-stamp">
+      <span class="live-dot"></span>
+      <span id="tgl-now">LOADING...</span>
+    </div>
+  </div>
+
+  <!-- ★ SIDANG COUNTER — replaces kelengkapan data ★ -->
+  <!-- CARD 1: IDENTITAS -->
+  <div class="card">
+    <div class="card-title">
+      <div class="ct-num">1</div>
+      📋 IDENTITAS ANGGOTA
+      <div class="ct-bar"></div>
+    </div>
+    <div class="fg">
+      <label class="lbl">Nama Lengkap <span class="req">*</span></label>
+      <input type="text" id="nama" placeholder="Nama sesuai KTM..." autocomplete="name" oninput="updateCounter()">
+    </div>
+    <div class="fg">
+      <label class="lbl">NIM <span class="req">*</span></label>
+      <input type="text" id="nim" placeholder="Nomor Induk Mahasiswa..." inputmode="numeric" maxlength="20" oninput="updateCounter()">
+    </div>
+  </div>
+
+  <!-- CARD 2: ANGKATAN -->
+  <div class="card">
+    <div class="card-title">
+      <div class="ct-num">2</div>
+      🎓 ANGKATAN
+      <div class="ct-bar"></div>
+    </div>
+    <div class="angkatan-grid">
+      <div class="ag-opt">
+        <input type="radio" name="angkatan" id="a24" value="2024 - Senior" onchange="updateCounter()">
+        <label for="a24"><span class="ay">2024</span><span class="at">⭐ Senior</span></label>
+      </div>
+      <div class="ag-opt">
+        <input type="radio" name="angkatan" id="a25" value="2025 - Minion" onchange="updateCounter()">
+        <label for="a25"><span class="ay">2025</span><span class="at">😈 Minion</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: TANGGAL LAHIR -->
+  <div class="card">
+    <div class="card-title">
+      <div class="ct-num">3</div>
+      🗓️ TANGGAL LAHIR
+      <div class="ct-bar"></div>
+    </div>
+    <div class="date-grid">
+      <div class="fg" style="margin-bottom:0;">
+        <label class="lbl">Tanggal <span class="req">*</span></label>
+        <div class="sel-w"><select id="tgl-lahir" onchange="updateCounter()"><option value="">—</option></select></div>
+      </div>
+      <div class="fg" style="margin-bottom:0;">
+        <label class="lbl">Bulan <span class="req">*</span></label>
+        <div class="sel-w">
+          <select id="bln-lahir" onchange="updateCounter()">
+            <option value="">—</option>
+            <option>Januari</option><option>Februari</option><option>Maret</option>
+            <option>April</option><option>Mei</option><option>Juni</option>
+            <option>Juli</option><option>Agustus</option><option>September</option>
+            <option>Oktober</option><option>November</option><option>Desember</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg" style="margin-bottom:0;">
+        <label class="lbl">Tahun <span class="req">*</span></label>
+        <div class="sel-w"><select id="thn-lahir" onchange="updateCounter()"><option value="">—</option></select></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 4: MENU MBG -->
+  <div class="card">
+    <div class="card-title">
+      <div class="ct-num">4</div>
+      🍽️ MENU FAVORIT MBG
+      <div class="ct-bar"></div>
+    </div>
+    <div class="mbg-grid">
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m1" value="Nasi Ayam Goreng" onchange="updateCounter()"><label for="m1"><span class="mi">🍗</span><div><div class="mn">Nasi Ayam Goreng</div><div class="md">Menu klasik favorit</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m2" value="Nasi Telur Dadar" onchange="updateCounter()"><label for="m2"><span class="mi">🍳</span><div><div class="mn">Nasi Telur Dadar</div><div class="md">Sederhana & lezat</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m3" value="Nasi Ikan Lele" onchange="updateCounter()"><label for="m3"><span class="mi">🐟</span><div><div class="mn">Nasi Ikan Lele</div><div class="md">Penuh protein</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m4" value="Nasi Tempe Tahu" onchange="updateCounter()"><label for="m4"><span class="mi">🟫</span><div><div class="mn">Nasi Tempe Tahu</div><div class="md">Bergizi & hemat</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m5" value="Nasi Daging Sapi" onchange="updateCounter()"><label for="m5"><span class="mi">🥩</span><div><div class="mn">Nasi Daging Sapi</div><div class="md">Mewah & mengenyangkan</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m6" value="Nasi Sayur Lodeh" onchange="updateCounter()"><label for="m6"><span class="mi">🥦</span><div><div class="mn">Nasi Sayur Lodeh</div><div class="md">Sehat & segar</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m7" value="Nasi Ayam Bakar" onchange="updateCounter()"><label for="m7"><span class="mi">🔥</span><div><div class="mn">Nasi Ayam Bakar</div><div class="md">Smoky & spesial</div></div></label></div>
+      <div class="mbg-opt"><input type="radio" name="mbg" id="m8" value="Nasi Rendang" onchange="updateCounter()"><label for="m8"><span class="mi">🫕</span><div><div class="mn">Nasi Rendang</div><div class="md">Raja dari semua menu</div></div></label></div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div>
+    <button class="btn-stamp" id="btnSub" onclick="kirim()">
+      ⚖️ &nbsp; RESMI DAFTARKAN DATA &nbsp; ⚖️
+    </button>
+    <div class="msg" id="msgBox"></div>
+  </div>
+
+  <div class="footer-strip">DPM GEOGRAFI 2026 · SISTEM PENDATAAN ANGGOTA · LEGISLATIF DIGITAL</div>
+</div>
+
+<!-- ════════════════════════════
+     🎉 CELEBRATION OVERLAY
+════════════════════════════ -->
+<div class="cel-overlay" id="celOverlay">
+  <div class="cel-bg"></div>
+
+  <!-- Big floating bg emojis -->
+  <div class="cel-bg-emoji" style="top:4%;left:3%;animation-duration:2.8s;">🎉</div>
+  <div class="cel-bg-emoji" style="top:6%;right:5%;animation-duration:2.5s;animation-delay:.3s;">🥳</div>
+  <div class="cel-bg-emoji" style="bottom:12%;left:2%;animation-duration:3s;animation-delay:.5s;">🏛️</div>
+  <div class="cel-bg-emoji" style="bottom:15%;right:3%;animation-duration:2.6s;animation-delay:.2s;">⚖️</div>
+  <div class="cel-bg-emoji" style="top:42%;left:-2%;animation-duration:2.9s;animation-delay:.4s;">🗳️</div>
+  <div class="cel-bg-emoji" style="top:38%;right:-2%;animation-duration:2.7s;animation-delay:.1s;">📜</div>
+
+  <div class="cel-scroll">
+    <div class="cel-card">
+
+      <!-- TOP RED BANNER -->
+      <div class="cel-top">
+        <div class="cel-stamp-spin">⚖️</div>
+        <span class="cel-hero-emoji" id="celHeroEmoji">🎉</span>
+        <div class="cel-tag">DOKUMEN RESMI · DPM GEOGRAFI 2026</div>
+        <div class="cel-main-title">DATA BERHASIL<br>TERCATAT!</div>
+        <div class="cel-main-sub">SIDANG PARIPURNA — MOSI DITERIMA 🔨</div>
+      </div>
+
+      <!-- BOUNCING PARTY EMOJIS -->
+      <div class="cel-party-row">
+        <span class="cpe">🎊</span>
+        <span class="cpe">🏆</span>
+        <span class="cpe">✨</span>
+        <span class="cpe">🎖️</span>
+        <span class="cpe">✨</span>
+        <span class="cpe">🎊</span>
+      </div>
+
+      <!-- BODY -->
+      <div class="cel-body">
+
+        <!-- Name block -->
+        <div class="cel-name-block">
+          <div class="cel-welcome">SELAMAT DATANG, ANGGOTA DPM GEOGRAFI</div>
+          <div class="cel-nama" id="celNama">—</div>
+          <div class="cel-nim-txt" id="celNim">—</div>
+        </div>
+
+        <!-- Data grid 2x2 + 1 full -->
+        <div class="cel-grid">
+          <div class="cel-di">
+            <span class="cel-di-ico">🎓</span>
+            <div class="cel-di-lbl">ANGKATAN</div>
+            <div class="cel-di-val" id="celAng">—</div>
+          </div>
+          <div class="cel-di">
+            <span class="cel-di-ico">🎂</span>
+            <div class="cel-di-lbl">TANGGAL LAHIR</div>
+            <div class="cel-di-val" id="celTgl">—</div>
+          </div>
+          <div class="cel-di full">
+            <span class="cel-di-ico" id="celMbgIco">🍽️</span>
+            <div class="cel-di-lbl">MENU FAVORIT MBG</div>
+            <div class="cel-di-val" id="celMbg">—</div>
+          </div>
+        </div>
+
+        <!-- Angkatan badge -->
+        <div class="cel-ang-row">
+          <div class="ang-badge" id="celBadge">—</div>
+        </div>
+
+        <!-- Quote motivasi -->
+        <div class="cel-quote">
+          <span class="cel-q-emoji" id="celQEmoji">🌟</span>
+          <div class="cel-q-text" id="celQText">Selamat bergabung!</div>
+          <div class="cel-q-src" id="celQSrc">— DPM GEOGRAFI 2026 —</div>
+        </div>
+
+        <button class="btn-cel-close" onclick="closeCelebrate()">
+          🗳️ &nbsp; KEMBALI KE SIDANG &nbsp; 🗳️
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+const SCRIPT_URL='https://script.google.com/macros/s/GANTI_DENGAN_URL_KAMU/exec';
+// ══════════════════════════════════════════
+
+// Build date dropdowns
+(function(){
+  const ts=document.getElementById('tgl-lahir');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=o.textContent=String(i).padStart(2,'0');ts.appendChild(o);}
+  const ty=document.getElementById('thn-lahir');
+  for(let y=2010;y>=1995;y--){const o=document.createElement('option');o.value=o.textContent=y;ty.appendChild(o);}
+})();
+
+// Sidang counter
+function updateCounter(){
+  const g=[
+    !!(document.getElementById('nama').value.trim()),
+    !!(document.getElementById('nim').value.trim()),
+    !!(document.querySelector('input[name="angkatan"]:checked')),
+    !!(document.getElementById('tgl-lahir').value&&document.getElementById('bln-lahir').value&&document.getElementById('thn-lahir').value),
+    !!(document.querySelector('input[name="mbg"]:checked'))
+  ];
+  const filled=g.filter(Boolean).length,sisa=g.length-filled;
+  document.getElementById('scFilled').textContent=filled;
+  document.getElementById('scSisa').textContent=sisa;
+  document.getElementById('scFilled').style.color=filled===g.length?'var(--green2)':'var(--emas2)';
+  document.getElementById('scSisa').style.color=sisa===0?'var(--green2)':'var(--merah3)';
+}
+
+function showMsg(t,x){const el=document.getElementById('msgBox');el.className='msg '+t;el.textContent=x;}
+
+const MBG_ICO={'Nasi Ayam Goreng':'🍗','Nasi Telur Dadar':'🍳','Nasi Ikan Lele':'🐟','Nasi Tempe Tahu':'🟫','Nasi Daging Sapi':'🥩','Nasi Sayur Lodeh':'🥦','Nasi Ayam Bakar':'🔥','Nasi Rendang':'🫕'};
+
+const Q={
+  senior:[
+    {e:'👑',t:'Senior bukan soal usia — soal kontribusi. Kamu sudah membuktikan dirimu di DPM Geografi!',s:'— Filosofi Legislatif DPM'},
+    {e:'🌟',t:'Pengalaman adalah guru terbaik. Dan kamu, Senior, sudah banyak belajar. Terus bersinar!',s:'— DPM Geografi 2026'},
+    {e:'🦅',t:'Seperti Garuda yang terbang tinggi, Senior DPM Geografi membawa visi yang jauh ke depan.',s:'— Semangat Kebangsaan'},
+    {e:'⚡',t:'Kepemimpinan bukan tentang posisi — tapi tentang dampak nyata yang kamu berikan setiap hari.',s:'— Wisdom Sidang Paripurna'},
+    {e:'🏆',t:'Dua tahun bukan waktu yang singkat. Pengalamanmu adalah harta terbesar organisasi ini.',s:'— Rapat Pimpinan DPM'}
+  ],
+  minion:[
+    {e:'🚀',t:'Minion bukan berarti kecil — artinya kamu punya ruang tak terbatas untuk tumbuh dan bersinar!',s:'— Motivasi Legislatif'},
+    {e:'🌱',t:'Setiap senator besar pernah jadi Minion. Jaga semangatmu — masa depan ada di tanganmu!',s:'— DPM Geografi 2026'},
+    {e:'🎯',t:'Angkatan baru, energi baru, ide baru! DPM Geografi butuh semangat segar darimu!',s:'— Rapat Paripurna 2026'},
+    {e:'💥',t:'Mulai dari bawah bukan kelemahan — itu adalah fondasi paling kuat untuk berdiri setinggi-tingginya!',s:'— Wisdom Minion DPM'},
+    {e:'🔥',t:'Api paling besar dimulai dari percikan kecil. Kamu adalah percikan baru DPM Geografi 2026!',s:'— Semboyan Angkatan Baru'}
+  ]
+};
+
+// Fireworks via Web Animations API
+function launchFW(ov){
+  const cols=['#FFD700','#FF0020','#FF4500','#00BFFF','#FF69B4','#7CFC00','#FF8C00','#DA70D6','#FFFFFF'];
+  for(let b=0;b<7;b++){
+    setTimeout(()=>{
+      const bx=(window.innerWidth*.1)+(Math.random()*window.innerWidth*.8);
+      const by=(window.innerHeight*.05)+(Math.random()*window.innerHeight*.45);
+      for(let p=0;p<22;p++){
+        const fw=document.createElement('div');
+        fw.style.cssText=`position:absolute;width:${3+Math.random()*5}px;height:${3+Math.random()*5}px;border-radius:50%;background:${cols[Math.floor(Math.random()*cols.length)]};left:${bx}px;top:${by}px;pointer-events:none;z-index:15;`;
+        const ang=(p/22)*Math.PI*2,dist=60+Math.random()*130;
+        fw.animate([
+          {transform:'translate(0,0) scale(1.2)',opacity:1},
+          {transform:`translate(${Math.cos(ang)*dist}px,${Math.sin(ang)*dist}px) scale(.1)`,opacity:0}
+        ],{duration:500+Math.random()*500,easing:'ease-out',fill:'forwards'});
+        ov.appendChild(fw);
+        setTimeout(()=>{try{fw.remove();}catch(e){}},1100);
+      }
+    },b*250);
+  }
+}
+
+// Confetti rain
+function launchConfetti(ov){
+  const cols=['#FFD700','#FF0020','#FFFFFF','#FF4500','#00FF88','#FF69B4','#4169E1','#FFB300','#C0021A'];
+  function batch(n,delay){
+    setTimeout(()=>{
+      for(let i=0;i<n;i++){
+        const b=document.createElement('div');b.className='cbit';
+        const w=6+Math.random()*12,h=8+Math.random()*16;
+        b.style.cssText=`left:${Math.random()*100}%;width:${w}px;height:${h}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-duration:${2+Math.random()*2.5}s;animation-delay:${Math.random()*1}s;border-radius:${Math.random()>.4?'50%':'2px'};z-index:12;`;
+        ov.appendChild(b);
+        setTimeout(()=>{try{b.remove();}catch(e){}},4500);
+      }
+    },delay);
+  }
+  batch(90,0);batch(60,600);batch(45,1300);
+}
+
+function showCelebrate(nama,nim,ang,tglLahir,mbg){
+  const ov=document.getElementById('celOverlay');
+  const isSenior=ang.includes('2024');
+
+  document.getElementById('celNama').textContent=nama;
+  document.getElementById('celNim').textContent='NIM · '+nim;
+  document.getElementById('celAng').textContent=ang;
+  document.getElementById('celTgl').textContent=tglLahir;
+  document.getElementById('celMbg').textContent=mbg;
+  document.getElementById('celMbgIco').textContent=MBG_ICO[mbg]||'🍽️';
+  document.getElementById('celHeroEmoji').textContent=isSenior?'👑':'🚀';
+
+  const badge=document.getElementById('celBadge');
+  badge.className='ang-badge '+(isSenior?'senior':'minion');
+  badge.textContent=isSenior?'⭐  SENIOR 2024':'😈  MINION 2025';
+
+  const pool=isSenior?Q.senior:Q.minion;
+  const q=pool[Math.floor(Math.random()*pool.length)];
+  document.getElementById('celQEmoji').textContent=q.e;
+  document.getElementById('celQText').textContent=q.t;
+  document.getElementById('celQSrc').textContent=q.s;
+
+  ov.classList.add('show');
+  // Scroll to top of overlay
+  ov.querySelector('.cel-scroll').scrollTop=0;
+  launchFW(ov);
+  launchConfetti(ov);
+}
+
+function closeCelebrate(){
+  const ov=document.getElementById('celOverlay');
+  ov.classList.remove('show');
+  ov.querySelectorAll('.cbit,[style*="position:absolute"][style*="border-radius:50%"]').forEach(el=>{try{el.remove();}catch(e){}});
+}
+
+// KIRIM
+function kirim(){
+  const nama=document.getElementById('nama').value.trim();
+  const nim=document.getElementById('nim').value.trim();
+  const ang=document.querySelector('input[name="angkatan"]:checked');
+  const tgl=document.getElementById('tgl-lahir').value;
+  const bln=document.getElementById('bln-lahir').value;
+  const thn=document.getElementById('thn-lahir').value;
+  const mbg=document.querySelector('input[name="mbg"]:checked');
+
+  if(!nama){showMsg('error','⚠ Nama lengkap tidak boleh kosong!');document.getElementById('nama').focus();return;}
+  if(!nim){showMsg('error','⚠ NIM tidak boleh kosong!');document.getElementById('nim').focus();return;}
+  if(!ang){showMsg('error','⚠ Pilih angkatan terlebih dahulu!');return;}
+  if(!tgl||!bln||!thn){showMsg('error','⚠ Tanggal lahir harus dilengkapi (tanggal, bulan, tahun)!');return;}
+  if(!mbg){showMsg('error','⚠ Pilih menu favorit MBG!');return;}
+
+  const tglLahir=String(tgl).padStart(2,'0')+' '+bln+' '+thn;
+  const now=new Date();
+  const payload={nama,nim,angkatan:ang.value,tglLahir,tgl,bln,thn,mbg:mbg.value,waktu:now.toLocaleTimeString('id-ID'),tanggal:now.toLocaleDateString('id-ID')};
+
+  document.getElementById('btnSub').disabled=true;
+  showMsg('loading','⏳ Mengirim data ke Batcomputer DPM Geografi...');
+
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(()=>{
+    document.getElementById('msgBox').className='msg';
+    document.getElementById('btnSub').disabled=false;
+    document.getElementById('nama').value='';
+    document.getElementById('nim').value='';
+    document.getElementById('tgl-lahir').value='';
+    document.getElementById('bln-lahir').value='';
+    document.getElementById('thn-lahir').value='';
+    document.querySelectorAll('input[name="angkatan"],input[name="mbg"]').forEach(r=>r.checked=false);
+    updateCounter();
+    showCelebrate(nama,nim,ang.value,tglLahir,mbg.value);
+  })
+  .catch(()=>{
+    document.getElementById('btnSub').disabled=false;
+    showMsg('error','❌ Gagal mengirim! Periksa koneksi internet kamu lalu coba lagi.');
+  });
+}
+
+updateCounter();
+</script>
+</body>
+</html>
